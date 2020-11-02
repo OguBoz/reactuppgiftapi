@@ -1,18 +1,22 @@
-import React, {useState, useEffect} from 'react'
+import React, {useContext, useState} from 'react'
 import { NavLink } from 'react-router-dom'
 import logo from '../assets/imgs/logo.png';
 import { useHistory } from "react-router-dom";
+import { PokemonContext } from '../App';
+
 
 export default function Navbar(props) {
   let history = useHistory();
 
+  const { pokemons, setPokemons } = useContext(PokemonContext);
+
   const logout = (e) => {
     e.preventDefault();
-
+    // console.log(pokemons)
     localStorage.setItem("username", "");
     localStorage.setItem("password", "");
 
-
+    setPokemons(pokemons.length=0);
     history.push('/signin')
 
   }
